@@ -30,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.vrach.R
 import com.example.vrach.ui.intro.LoadingScreen
+import com.example.vrach.ui.login.LoginOptionScreen
 
 /**
  * enum values that represent the screens in the app
@@ -71,7 +72,7 @@ fun VrachAppBar(
 
 @Composable
 fun VrachApp() {
-    LoadingScreen()
+    LoginOptionScreen()
 }
 @Composable
 fun MyTopAppBar(){
