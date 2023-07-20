@@ -1,10 +1,12 @@
 package com.example.vrach.ui.login
 
+import android.graphics.drawable.DrawableContainer
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -28,7 +31,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -68,37 +74,70 @@ fun LoginOptionScreen() {
             LoginButtons(text = "Continue With Facebook", iconButton = R.drawable.facebook_icon)
             Spacer(modifier = Modifier.height(10.dp))
             LoginButtons(text = "Continue With Google", iconButton = R.drawable.google_icon2)
+            Spacer(modifier = Modifier.height(20.dp))
+            LineOptions()
+            Spacer(modifier = Modifier.height(20.dp))
+            LoginButtons(
+                text = "Sign in with password",
+                backgroundColor = Color(0xFFF246BFD),
+                textColor = Color.White
+            )
         }
     }
 }
 
 @Composable
+fun LineOptions() {
+    Row(Modifier.fillMaxWidth(0.9f), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
+        Box(modifier = Modifier
+            .height(1.dp)
+            .weight(1f)
+            .background(Color(0xFFF1F2F3))) {}
+        Text(
+            text = AnnotatedString("or"), modifier = Modifier.weight(0.2f),
+            style = TextStyle(
+                textAlign = TextAlign.Center
+            ),
+        )
+        Box(modifier = Modifier
+            .height(1.dp)
+            .weight(1f)
+            .background(Color(0xFFF1F2F3))) {}
+    }
+}
+@Composable
 fun LoginButtons(
     text: String = "",
-    @DrawableRes iconButton: Int
+    @DrawableRes iconButton: Int = 0,
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = Color.Transparent,
+    textColor: Color = Color.Black,
 ) {
     Button(
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
             .height(60.dp),
         border = BorderStroke(1.dp, Color(0xFFF1F2F3)),
         shape = RoundedCornerShape(30),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Transparent,
-            contentColor = Color.Black
+            containerColor = backgroundColor,
+            contentColor = textColor
         ),
         onClick = { /*TODO*/ }) {
         Row(
             horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
+            modifier = modifier.fillMaxWidth()
         ) {
-            Image(
-                painter = painterResource(id = iconButton),
-                contentDescription = "",
-                modifier = Modifier
-                    .width(20.dp)
-                    .height(20.dp)
-            )
-            Spacer(modifier = Modifier.width(10.dp))
+            if(iconButton != 0) {
+                Image(
+                    painter = painterResource(id = iconButton),
+                    contentDescription = "",
+                    modifier = modifier
+                        .width(20.dp)
+                        .height(20.dp)
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+            }
             Text(text = text)
         }
     }
