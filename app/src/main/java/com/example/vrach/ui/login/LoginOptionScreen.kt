@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.sp
 import com.example.vrach.R
 import com.example.vrach.ui.theme.PurpleGrey80
 import com.example.vrach.ui.theme.PurpleWhite
+import java.text.DecimalFormat
 
 @Composable
 fun LoginOptionScreen() {
@@ -75,9 +76,9 @@ fun LoginOptionScreen() {
                 .padding(start = 10.dp, end = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            LoginButtons(text = "Continue With Facebook", iconButton = R.drawable.facebook_icon)
+            LoginButtons(text = "Continue with Facebook", iconButton = R.drawable.facebook_icon)
             Spacer(modifier = Modifier.height(10.dp))
-            LoginButtons(text = "Continue With Google", iconButton = R.drawable.google_icon2)
+            LoginButtons(text = "Continue with Google", iconButton = R.drawable.google_icon2)
             Spacer(modifier = Modifier.height(20.dp))
             LineOptions()
             Spacer(modifier = Modifier.height(20.dp))
@@ -91,14 +92,14 @@ fun LoginOptionScreen() {
 }
 
 @Composable
-fun LineOptions() {
+fun LineOptions(text: String = "or", f: Float = 0.2f) {
     Row(Modifier.fillMaxWidth(0.9f), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
         Box(modifier = Modifier
             .height(1.dp)
             .weight(1f)
             .background(Color(0xFFF1F2F3))) {}
         Text(
-            text = AnnotatedString("or"), modifier = Modifier.weight(0.2f),
+            text = AnnotatedString(text), modifier = Modifier.weight(f),
             style = TextStyle(
                 textAlign = TextAlign.Center
             ),

@@ -36,6 +36,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.vrach.R
+import com.example.vrach.ui.login.LineOptions
 import com.example.vrach.ui.login.LoginButtons
 import com.example.vrach.ui.theme.PurpleWhite
 
@@ -77,9 +78,11 @@ fun StepOneRegisterForm() {
                 keyboardType = KeyboardType.Text,
                 imeAction = ImeAction.Next
             ),
-            modifier = Modifier.fillMaxWidth().onFocusEvent {
-                emailColor = if (it.isFocused ) Color(0xFFFFB8CBF1) else Color(0xFFF6F6F6)
-            }
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusEvent {
+                    emailColor = if (it.isFocused) Color(0xFFFFB8CBF1) else Color(0xFFF6F6F6)
+                }
         )
         Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(
@@ -108,9 +111,11 @@ fun StepOneRegisterForm() {
                 keyboardType = KeyboardType.Text,
                 imeAction = ImeAction.Done
             ),
-            modifier = Modifier.fillMaxWidth().onFocusEvent {
-                passwordColor = if (it.isFocused ) Color(0xFFFFB8CBF1) else Color(0xFFF6F6F6)
-            }
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusEvent {
+                    passwordColor = if (it.isFocused) Color(0xFFFFB8CBF1) else Color(0xFFF6F6F6)
+                }
         )
         Spacer(modifier = Modifier.height(30.dp))
         LoginButtons(
@@ -118,6 +123,8 @@ fun StepOneRegisterForm() {
             backgroundColor = Color(0xFFF246BFD),
             textColor = Color.White
         )
+        Spacer(modifier = Modifier.height(30.dp))
+        LineOptions(text = "or continue with", f = 1f)
     }
 }
 
