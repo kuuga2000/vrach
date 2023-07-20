@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,9 +25,11 @@ import com.example.vrach.ui.login.LoginButtons
 
 @Composable
 fun RegisterScreen() {
+    val scrollState = rememberScrollState()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround
+        verticalArrangement = Arrangement.SpaceAround,
+        modifier = Modifier.verticalScroll(state = scrollState)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
@@ -44,23 +48,6 @@ fun RegisterScreen() {
             )
         }
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 10.dp, end = 20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            LoginButtons(text = "Continue With Facebook", iconButton = R.drawable.facebook_icon)
-            Spacer(modifier = Modifier.height(10.dp))
-            LoginButtons(text = "Continue With Google", iconButton = R.drawable.google_icon2)
-            Spacer(modifier = Modifier.height(20.dp))
-            LineOptions()
-            Spacer(modifier = Modifier.height(20.dp))
-            LoginButtons(
-                text = "Sign in with password",
-                backgroundColor = Color(0xFFF246BFD),
-                textColor = Color.White
-            )
-        }
+        StepOneRegisterForm()
     }
 }
