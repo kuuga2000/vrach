@@ -71,13 +71,13 @@ fun LoginOptionScreen(
                 .padding(start = 10.dp, end = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            LoginButtons(text = "Continue with Facebook", iconButton = R.drawable.facebook_icon)
+            SocialLoginButtons(text = "Continue with Facebook", iconButton = R.drawable.facebook_icon)
             Spacer(modifier = Modifier.height(10.dp))
-            LoginButtons(text = "Continue with Google", iconButton = R.drawable.google_icon2)
+            SocialLoginButtons(text = "Continue with Google", iconButton = R.drawable.google_icon2)
             Spacer(modifier = Modifier.height(20.dp))
             LineOptions()
             Spacer(modifier = Modifier.height(20.dp))
-            LoginButtons(
+            SocialLoginButtons(
                 text = "Sign in with password",
                 backgroundColor = Color(0xFFF246BFD),
                 textColor = Color.White
@@ -121,43 +121,6 @@ fun LineOptions(text: String = "or", f: Float = 0.2f) {
             .height(1.dp)
             .weight(1f)
             .background(Color(0xFFF1F2F3))) {}
-    }
-}
-@Composable
-fun LoginButtons(
-    text: String = "",
-    @DrawableRes iconButton: Int = 0,
-    modifier: Modifier = Modifier,
-    backgroundColor: Color = Color.Transparent,
-    textColor: Color = Color.Black,
-) {
-    Button(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(60.dp),
-        border = BorderStroke(1.dp, Color(0xFFF1F2F3)),
-        shape = RoundedCornerShape(30),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = backgroundColor,
-            contentColor = textColor
-        ),
-        onClick = { /*TODO*/ }) {
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            modifier = modifier.fillMaxWidth()
-        ) {
-            if(iconButton != 0) {
-                Image(
-                    painter = painterResource(id = iconButton),
-                    contentDescription = "",
-                    modifier = modifier
-                        .width(20.dp)
-                        .height(20.dp)
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-            }
-            Text(text = text)
-        }
     }
 }
 

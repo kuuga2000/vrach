@@ -3,8 +3,10 @@ package com.example.vrach.ui.register
 import androidx.compose.foundation.border
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -37,8 +39,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.vrach.R
 import com.example.vrach.ui.login.LineOptions
-import com.example.vrach.ui.login.LoginButtons
+import com.example.vrach.ui.login.SocialLoginButtons
+import com.example.vrach.ui.login.SocialRegisterButton
 import com.example.vrach.ui.theme.PurpleWhite
+import com.example.vrach.ui.util.clickableWithoutRipple
 
 @Composable
 
@@ -47,6 +51,7 @@ fun StepOneRegisterForm() {
     var password by remember { mutableStateOf("") }
     var emailColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
     var passwordColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
+    val interactionSource = remember { MutableInteractionSource() }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -118,13 +123,33 @@ fun StepOneRegisterForm() {
                 }
         )
         Spacer(modifier = Modifier.height(30.dp))
-        LoginButtons(
+        SocialLoginButtons(
             text = "Sign up",
             backgroundColor = Color(0xFFF246BFD),
             textColor = Color.White
         )
         Spacer(modifier = Modifier.height(30.dp))
         LineOptions(text = "or continue with", f = 1f)
+        Spacer(modifier = Modifier.height(30.dp))
+        SocialRegisterButton()
+        Spacer(modifier = Modifier.height(35.dp))
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.clickableWithoutRipple(
+                interactionSource = interactionSource,
+                onClick = {}
+            )
+        ) {
+            Text(
+                text = "Already have an account?",
+                color = Color.Gray
+            )
+            Spacer(modifier = Modifier.width(5.dp))
+            Text(
+                text = "Sign in",
+                color = Color(0xFFF246BFD)
+            )
+        }
     }
 }
 
