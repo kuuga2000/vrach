@@ -22,27 +22,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.vrach.route.LoginRoute
 import com.example.vrach.ui.login.LoginOptionScreen
 import com.example.vrach.ui.register.RegisterScreen
 import com.example.vrach.ui.util.VrachAppBar
-
-/**
- * enum values that represent the screens in the app
- */
-enum class VrachScreen(val title: String) {
-    Start(title = "Vrach"),
-    Login(title = "Login"),
-    Signup(title = "Signup"),
-    ForgotPassword(title = "Forgot Password")
-}
 
 @Composable
 fun VrachApp(
     navController: NavHostController = rememberNavController()
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentScreen = VrachScreen.valueOf(
-        backStackEntry?.destination?.route ?: VrachScreen.Login.name
+    val currentScreen = LoginRoute.valueOf(
+        backStackEntry?.destination?.route ?: LoginRoute.Login.name
     )
 
     Scaffold(
@@ -58,17 +49,17 @@ fun VrachApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = VrachScreen.Login.name,
+            startDestination = LoginRoute.Login.name,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(VrachScreen.Login.name) {
+            composable(LoginRoute.Login.name) {
                 LoginOptionScreen(
                     onSignUpClicked = {
-                        navController.navigate(VrachScreen.Signup.name)
+                        navController.navigate(LoginRoute.Signup.name)
                     }
                 )
             }
-            composable(VrachScreen.Signup.name) {
+            composable(LoginRoute.Signup.name) {
                 RegisterScreen()
             }
         }

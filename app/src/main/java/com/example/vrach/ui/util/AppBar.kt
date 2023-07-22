@@ -10,11 +10,11 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.vrach.VrachScreen
+import com.example.vrach.route.LoginRoute
 
 @Composable
 fun VrachAppBar(
-    currentScreen: VrachScreen,
+    currentScreen: LoginRoute,
     canNavigateBack: Boolean,
     navigateUp: () -> Unit,
     modifier: Modifier = Modifier
