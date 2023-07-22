@@ -29,19 +29,10 @@ import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.vrach.R
+import com.example.vrach.VrachScreen
 import com.example.vrach.ui.intro.LoadingScreen
 import com.example.vrach.ui.login.LoginOptionScreen
 import com.example.vrach.ui.register.RegisterScreen
-
-/**
- * enum values that represent the screens in the app
- */
-enum class VrachScreen(val title: String) {
-    Start(title = "Vrach"),
-    Login(title = "Login"),
-    Signup(title = "Signup"),
-    ForgotPassword(title = "Forgot Password")
-}
 
 @Composable
 fun VrachAppBar(
@@ -71,10 +62,6 @@ fun VrachAppBar(
     )
 }
 
-@Composable
-fun VrachApp() {
-    LoginOptionScreen()
-}
 @Composable
 fun MyTopAppBar(){
     TopAppBar(
