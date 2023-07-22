@@ -35,34 +35,6 @@ import com.example.vrach.ui.login.LoginOptionScreen
 import com.example.vrach.ui.register.RegisterScreen
 
 @Composable
-fun VrachAppBar(
-    currentScreen: VrachScreen,
-    canNavigateBack: Boolean,
-    navigateUp: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    TopAppBar(
-        title = {
-            Text(currentScreen.title)
-        },
-        colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        ),
-        modifier = modifier,
-        navigationIcon = {
-            if (canNavigateBack) {
-                IconButton(onClick = navigateUp) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "a"
-                    )
-                }
-            }
-        }
-    )
-}
-
-@Composable
 fun MyTopAppBar(){
     TopAppBar(
         title = { Text("My Application")},
