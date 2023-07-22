@@ -26,7 +26,9 @@ import androidx.compose.ui.unit.sp
 import com.example.vrach.R
 
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(
+    onSignInClicked: () -> Unit = {}
+) {
     val scrollState = rememberScrollState()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -51,7 +53,7 @@ fun RegisterScreen() {
             )
         }
 
-        StepOneRegisterForm()
+        StepOneRegisterForm(onSignInClicked = onSignInClicked)
     }
 }
 

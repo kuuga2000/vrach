@@ -49,7 +49,7 @@ fun VrachApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = LoginRoute.Signup.name,
+            startDestination = LoginRoute.Login.name,
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(LoginRoute.Login.name) {
@@ -60,7 +60,11 @@ fun VrachApp(
                 )
             }
             composable(LoginRoute.Signup.name) {
-                RegisterScreen()
+                RegisterScreen(
+                    onSignInClicked = {
+                        navController.navigate(LoginRoute.Login.name)
+                    }
+                )
             }
         }
     }

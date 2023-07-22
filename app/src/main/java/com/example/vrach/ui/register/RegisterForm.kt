@@ -46,7 +46,9 @@ import com.example.vrach.ui.util.clickableWithoutRipple
 
 @Composable
 
-fun StepOneRegisterForm() {
+fun StepOneRegisterForm(
+    onSignInClicked: () -> Unit = {}
+) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var emailColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
@@ -137,7 +139,7 @@ fun StepOneRegisterForm() {
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier.clickableWithoutRipple(
                 interactionSource = interactionSource,
-                onClick = {}
+                onClick = onSignInClicked
             )
         ) {
             Text(
