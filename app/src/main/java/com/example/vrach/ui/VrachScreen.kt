@@ -73,7 +73,7 @@ fun VrachAppBar(
 
 @Composable
 fun VrachApp() {
-    RegisterScreen()
+    LoginOptionScreen()
 }
 @Composable
 fun MyTopAppBar(){
