@@ -15,6 +15,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,9 +31,11 @@ import com.example.vrach.R
 
 @Composable
 fun RegisterScreen(
-    onSignInClicked: () -> Unit = {}
+    onSignInClicked: () -> Unit = {},
+    onSignUpClick: () -> Unit = {}
 ) {
-    val scrollState = rememberScrollState()
+    var registerStep by remember{ mutableStateOf(1) }
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround,
@@ -53,7 +59,28 @@ fun RegisterScreen(
             )
         }
 
-        StepOneRegisterForm(onSignInClicked = onSignInClicked)
+        RegisterDataScreen(
+            onSignInClicked = onSignInClicked,
+            onSignUpClicked= { registerStep++ },
+            stepRegister = registerStep
+        )
+    }
+}
+
+@Composable
+fun RegisterDataScreen(
+    onSignInClicked: () -> Unit = {},
+    onSignUpClicked: () -> Unit,
+    stepRegister: Int = 1
+) {
+    if(stepRegister == 1) {
+        StepOneRegisterForm(
+            onSignInClicked = onSignInClicked,
+            onSignUpClicked = onSignUpClicked
+        )
+    }
+    if(stepRegister == 2) {
+        StepBioRegisterForm()
     }
 }
 

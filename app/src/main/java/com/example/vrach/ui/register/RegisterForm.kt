@@ -1,6 +1,7 @@
 package com.example.vrach.ui.register
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -47,7 +48,8 @@ import com.example.vrach.ui.util.clickableWithoutRipple
 @Composable
 
 fun StepOneRegisterForm(
-    onSignInClicked: () -> Unit = {}
+    onSignInClicked: () -> Unit = {},
+    onSignUpClicked: () -> Unit = {}
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -128,7 +130,10 @@ fun StepOneRegisterForm(
         SocialLoginButtons(
             text = "Sign up",
             backgroundColor = Color(0xFFF246BFD),
-            textColor = Color.White
+            textColor = Color.White,
+            modifier = Modifier.clickable(
+                onClick = onSignUpClicked
+            )
         )
         Spacer(modifier = Modifier.height(30.dp))
         LineOptions(text = "or continue with", f = 1f)
@@ -153,6 +158,11 @@ fun StepOneRegisterForm(
             )
         }
     }
+}
+
+@Composable
+fun StepBioRegisterForm(){
+    Text(text="Register Bio Data")
 }
 
 @Preview

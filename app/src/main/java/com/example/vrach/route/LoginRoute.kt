@@ -7,5 +7,6 @@ enum class LoginRoute(val title: String) {
     Start(title = "Vrach"),
     Login(title = "Login"),
     Signup(title = "Signup"),
+    BioData(title = "Fill Your Profile"),
     ForgotPassword(title = "Forgot Password")
 }
