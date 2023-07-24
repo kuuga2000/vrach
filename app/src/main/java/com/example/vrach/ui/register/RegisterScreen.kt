@@ -31,8 +31,7 @@ import com.example.vrach.R
 
 @Composable
 fun RegisterScreen(
-    onSignInClicked: () -> Unit = {},
-    onSignUpClick: () -> Unit = {}
+    onSignInClicked: () -> Unit = {}
 ) {
     var registerStep by remember{ mutableStateOf(1) }
 
@@ -41,10 +40,11 @@ fun RegisterScreen(
         verticalArrangement = Arrangement.SpaceAround,
         modifier = Modifier.fillMaxSize()
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth(1f)
-        ) {
+        if(registerStep == 1) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxWidth(1f)
+            ) {
             Image(
                 modifier = Modifier
                     .height(150.dp)
@@ -57,6 +57,7 @@ fun RegisterScreen(
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp
             )
+        }
         }
 
         RegisterDataScreen(
@@ -80,7 +81,10 @@ fun RegisterDataScreen(
         )
     }
     if(stepRegister == 2) {
-        StepBioRegisterForm()
+        StepBioRegisterForm(
+            modifier = Modifier.fillMaxWidth()
+                .padding(start = 10.dp, end = 10.dp)
+        )
     }
 }
 

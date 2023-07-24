@@ -161,8 +161,65 @@ fun StepOneRegisterForm(
 }
 
 @Composable
-fun StepBioRegisterForm(){
-    Text(text="Register Bio Data")
+fun StepBioRegisterForm(
+    modifier: Modifier = Modifier
+){
+    Row() {
+        Text(text = "Upload Avatar")
+    }
+    Row() {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = {
+                    Text("Full Name")
+                },
+                modifier = modifier
+            )
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = {
+                    Text("Nickname")
+                },
+                modifier = modifier
+            )
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = {
+                    Text("Date of Birth")
+                },
+                modifier = modifier
+            )
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = {
+                    Text("Email")
+                },
+                modifier = modifier
+            )
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = {
+                    Text("Gender")
+                },
+                modifier = modifier
+            )
+            Spacer(modifier = modifier.height(30.dp))
+            SocialLoginButtons(
+                text = "Continue",
+                backgroundColor = Color(0xFFF246BFD),
+                textColor = Color.White,
+                modifier = modifier
+            )
+        }
+    }
 }
 
 @Preview
