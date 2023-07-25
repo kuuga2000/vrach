@@ -131,9 +131,7 @@ fun StepOneRegisterForm(
             text = "Sign up",
             backgroundColor = Color(0xFFF246BFD),
             textColor = Color.White,
-            modifier = Modifier.clickable(
-                onClick = onSignUpClicked
-            )
+            onClicked = onSignUpClicked
         )
         Spacer(modifier = Modifier.height(30.dp))
         LineOptions(text = "or continue with", f = 1f)
@@ -164,7 +162,13 @@ fun StepOneRegisterForm(
 fun StepBioRegisterForm(
     modifier: Modifier = Modifier
 ){
-    Row() {
+    var fullname by remember { mutableStateOf("") }
+    var nickname by remember { mutableStateOf("") }
+    var dob by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf("") }
+    Row(
+    ) {
         Text(text = "Upload Avatar")
     }
     Row() {
@@ -172,43 +176,63 @@ fun StepBioRegisterForm(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = fullname,
+                onValueChange = {fullname = it},
                 label = {
                     Text("Full Name")
                 },
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Next
+                ),
                 modifier = modifier
             )
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = nickname,
+                onValueChange = {nickname = it},
                 label = {
                     Text("Nickname")
                 },
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Next
+                ),
                 modifier = modifier
             )
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = dob,
+                onValueChange = {dob = it},
                 label = {
                     Text("Date of Birth")
                 },
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Next
+                ),
                 modifier = modifier
             )
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = email,
+                onValueChange = {email = it},
                 label = {
                     Text("Email")
                 },
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Next
+                ),
                 modifier = modifier
             )
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = gender,
+                onValueChange = {gender = it},
                 label = {
                     Text("Gender")
                 },
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Ascii,
+                    imeAction = ImeAction.Done
+                ),
                 modifier = modifier
             )
             Spacer(modifier = modifier.height(30.dp))

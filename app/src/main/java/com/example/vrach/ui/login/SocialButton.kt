@@ -31,9 +31,10 @@ import com.example.vrach.R
 fun SocialLoginButtons(
     text: String = "",
     @DrawableRes iconButton: Int = 0,
+    onClicked: () -> Unit = {},
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.Transparent,
-    textColor: Color = Color.Black,
+    textColor: Color = Color.Black
 ) {
     Button(
         modifier = modifier
@@ -45,7 +46,7 @@ fun SocialLoginButtons(
             containerColor = backgroundColor,
             contentColor = textColor
         ),
-        onClick = { /*TODO*/ }) {
+        onClick = onClicked) {
         Row(
             horizontalArrangement = Arrangement.Center,
             modifier = modifier.fillMaxWidth()

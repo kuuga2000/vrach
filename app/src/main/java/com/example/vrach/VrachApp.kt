@@ -49,7 +49,7 @@ fun VrachApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = LoginRoute.Login.name,
+            startDestination = LoginRoute.Signup.name,
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(LoginRoute.Login.name) {
