@@ -105,11 +105,15 @@ fun LoginOptionScreen(
 }
 
 @Composable
-fun LineOptions(text: String = "or", f: Float = 0.2f) {
+fun LineOptions(text: String = "or", f: Float = 0.2f, isRegister: Boolean = false) {
     Row(Modifier.fillMaxWidth(0.9f), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
+        var weightLine = 1f
+        if (isRegister) {
+            weightLine = 0.7f
+        }
         Box(modifier = Modifier
             .height(1.dp)
-            .weight(1f)
+            .weight(weightLine)
             .background(Color(0xFFF1F2F3))) {}
         Text(
             text = AnnotatedString(text), modifier = Modifier.weight(f),
@@ -119,7 +123,7 @@ fun LineOptions(text: String = "or", f: Float = 0.2f) {
         )
         Box(modifier = Modifier
             .height(1.dp)
-            .weight(1f)
+            .weight(weightLine)
             .background(Color(0xFFF1F2F3))) {}
     }
 }

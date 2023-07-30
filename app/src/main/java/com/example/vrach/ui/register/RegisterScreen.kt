@@ -33,7 +33,7 @@ import com.example.vrach.R
 fun RegisterScreen(
     onSignInClicked: () -> Unit = {}
 ) {
-    var registerStep by remember{ mutableStateOf(2) }
+    var registerStep by remember{ mutableStateOf(1) }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,

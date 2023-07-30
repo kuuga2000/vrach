@@ -45,11 +45,12 @@ fun VrachApp(
                 },
                 currentScreen = currentScreen
             )
-        }
+        },
+        containerColor = Color.White,
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = LoginRoute.Signup.name,
+            startDestination = LoginRoute.Login.name,
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(LoginRoute.Login.name) {

@@ -134,7 +134,7 @@ fun StepOneRegisterForm(
             onClicked = onSignUpClicked
         )
         Spacer(modifier = Modifier.height(30.dp))
-        LineOptions(text = "or continue with", f = 1f)
+        LineOptions(text = "or continue with", f = 1f, isRegister = true)
         Spacer(modifier = Modifier.height(30.dp))
         SocialRegisterButton()
         Spacer(modifier = Modifier.height(35.dp))
@@ -167,6 +167,12 @@ fun StepBioRegisterForm(
     var dob by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var gender by remember { mutableStateOf("") }
+
+    var fullNameColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
+    var nicknameColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
+    var dobColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
+    var emailColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
+    var genderColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
     Row(
     ) {
         Text(text = "Upload Avatar")
@@ -185,6 +191,13 @@ fun StepBioRegisterForm(
                     keyboardType = KeyboardType.Text,
                     imeAction = ImeAction.Next
                 ),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color(0xFFF246BFD),
+                    unfocusedBorderColor = PurpleWhite,
+                    focusedLabelColor = Color(0xFFF246BFD),
+                    cursorColor = Color(0xFFF246BFD),
+                    containerColor = fullNameColor
+                ),
                 modifier = modifier
             )
             OutlinedTextField(
@@ -196,6 +209,13 @@ fun StepBioRegisterForm(
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Text,
                     imeAction = ImeAction.Next
+                ),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color(0xFFF246BFD),
+                    unfocusedBorderColor = PurpleWhite,
+                    focusedLabelColor = Color(0xFFF246BFD),
+                    cursorColor = Color(0xFFF246BFD),
+                    containerColor = nicknameColor
                 ),
                 modifier = modifier
             )
@@ -209,6 +229,13 @@ fun StepBioRegisterForm(
                     keyboardType = KeyboardType.Text,
                     imeAction = ImeAction.Next
                 ),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color(0xFFF246BFD),
+                    unfocusedBorderColor = PurpleWhite,
+                    focusedLabelColor = Color(0xFFF246BFD),
+                    cursorColor = Color(0xFFF246BFD),
+                    containerColor = dobColor
+                ),
                 modifier = modifier
             )
             OutlinedTextField(
@@ -221,6 +248,13 @@ fun StepBioRegisterForm(
                     keyboardType = KeyboardType.Email,
                     imeAction = ImeAction.Next
                 ),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color(0xFFF246BFD),
+                    unfocusedBorderColor = PurpleWhite,
+                    focusedLabelColor = Color(0xFFF246BFD),
+                    cursorColor = Color(0xFFF246BFD),
+                    containerColor = emailColor
+                ),
                 modifier = modifier
             )
             OutlinedTextField(
@@ -232,6 +266,13 @@ fun StepBioRegisterForm(
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Ascii,
                     imeAction = ImeAction.Done
+                ),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color(0xFFF246BFD),
+                    unfocusedBorderColor = PurpleWhite,
+                    focusedLabelColor = Color(0xFFF246BFD),
+                    cursorColor = Color(0xFFF246BFD),
+                    containerColor = genderColor
                 ),
                 modifier = modifier
             )
