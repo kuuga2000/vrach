@@ -35,6 +35,9 @@ fun rawJSON() {
     jsonObject.put("date_of_birth", "10/20/1111")
     jsonObject.put("email", "medusa.servaiv@gmail.com")
     jsonObject.put("gender", 2)
+    jsonObject.put("username", "medusa123")
+    jsonObject.put("password","Etogege1234")
+
 
     // Convert JSONObject to String
     val jsonObjectString = jsonObject.toString()
