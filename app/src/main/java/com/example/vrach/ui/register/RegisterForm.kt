@@ -281,7 +281,10 @@ fun StepBioRegisterForm(
                 text = "Continue",
                 backgroundColor = Color(0xFFF246BFD),
                 textColor = Color.White,
-                modifier = modifier
+                modifier = modifier,
+                onClicked = {
+                    postMethod()
+                }
             )
         }
     }
