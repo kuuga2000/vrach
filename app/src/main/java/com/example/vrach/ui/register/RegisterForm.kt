@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,7 +39,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vrach.R
+import com.example.vrach.model.LoginDataState
 import com.example.vrach.ui.login.LineOptions
 import com.example.vrach.ui.login.SocialLoginButtons
 import com.example.vrach.ui.login.SocialRegisterButton
@@ -56,6 +59,15 @@ fun StepOneRegisterForm(
     var emailColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
     var passwordColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
     val interactionSource = remember { MutableInteractionSource() }
+
+    val viewModel: LoginViewModel = viewModel()
+
+    viewModel.setLoginData(
+        LoginDataState(
+            username = email,
+            password = password
+        )
+    )
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -160,7 +172,8 @@ fun StepOneRegisterForm(
 
 @Composable
 fun StepBioRegisterForm(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    uiState: LoginDataState
 ){
     var fullname by remember { mutableStateOf("") }
     var nickname by remember { mutableStateOf("") }
@@ -173,9 +186,13 @@ fun StepBioRegisterForm(
     var dobColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
     var emailColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
     var genderColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
-    Row(
+    Column(
     ) {
         Text(text = "Upload Avatar")
+        uiState.username?.let { Text(text = it) }
+        uiState.password?.let { Text(text = it) }
+        //Text(text = uiState?.username ?: "")
+        //Text(text = uiState?.password ?: "")
     }
     Row() {
         Column(
@@ -283,7 +300,7 @@ fun StepBioRegisterForm(
                 textColor = Color.White,
                 modifier = modifier,
                 onClicked = {
-                    postMethod()
+                    createAccount()
                 }
             )
         }
@@ -293,5 +310,5 @@ fun StepBioRegisterForm(
 @Preview
 @Composable
 fun StepOneRegisterFormPreview() {
-    StepOneRegisterForm();
+ //   StepOneRegisterForm();
 }

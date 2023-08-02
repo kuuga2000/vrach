@@ -15,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,12 +23,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.vrach.R
+import com.example.vrach.model.LoginDataState
 
 @Composable
 fun RegisterScreen(
@@ -41,23 +44,23 @@ fun RegisterScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         if(registerStep == 1) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxWidth(1f)
-            ) {
-            Image(
-                modifier = Modifier
-                    .height(150.dp)
-                    .width(150.dp),
-                painter = painterResource(id = R.drawable.register_logo2),
-                contentDescription = ""
-            )
-            Text(
-                text = "Create New Account",
-                fontWeight = FontWeight.Bold,
-                fontSize = 30.sp
-            )
-        }
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.fillMaxWidth(1f)
+                ) {
+                Image(
+                    modifier = Modifier
+                        .height(150.dp)
+                        .width(150.dp),
+                    painter = painterResource(id = R.drawable.register_logo2),
+                    contentDescription = ""
+                )
+                Text(
+                    text = "Create New Account",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 30.sp
+                )
+            }
         }
 
         RegisterDataScreen(
@@ -74,6 +77,8 @@ fun RegisterDataScreen(
     onSignUpClicked: () -> Unit,
     stepRegister: Int = 1
 ) {
+    val viewModel: LoginViewModel = viewModel()
+    val uiState by viewModel.uiState.collectAsState()
     if(stepRegister == 1) {
         StepOneRegisterForm(
             onSignInClicked = onSignInClicked,
@@ -82,7 +87,9 @@ fun RegisterDataScreen(
     }
     if(stepRegister == 2) {
         StepBioRegisterForm(
-            modifier = Modifier.fillMaxWidth()
+            uiState = uiState,
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(start = 10.dp, end = 10.dp)
         )
     }
