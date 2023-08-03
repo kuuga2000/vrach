@@ -1,4 +1,4 @@
-package com.example.vrach.model
+package com.example.vrach.model.customer
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable

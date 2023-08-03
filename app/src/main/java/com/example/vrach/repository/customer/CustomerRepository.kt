@@ -1,21 +1,20 @@
-package com.example.vrach.repository
+package com.example.vrach.repository.customer
 
-import com.example.vrach.api.RetrofitInstance
-import com.example.vrach.model.Customer
+import com.example.vrach.network.customer.CustomerInstance
 import okhttp3.RequestBody
 
-class Repository {
+class CustomerRepository {
     /*suspend fun createAccount(customer: Customer): Response<Customer> {
         return RetrofitInstance.api.createAccount(customer)
     }*/
 
     suspend fun createAccountcc(customer: RequestBody) {
-        RetrofitInstance.api.createAccount(customer)
+        CustomerInstance.api.createAccount(customer)
     }
 
     companion object {
         suspend fun createAccount(customer: RequestBody) {
-            RetrofitInstance.api.createAccount(customer)
+            CustomerInstance.api.createAccount(customer)
         }
     }
 }
