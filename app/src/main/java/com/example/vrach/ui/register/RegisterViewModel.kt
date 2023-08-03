@@ -3,7 +3,11 @@ package com.example.vrach.ui.register
 import com.example.vrach.network.CustomerApiService
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.vrach.model.Customer
 import com.example.vrach.model.LoginDataState
+import com.example.vrach.repository.Repository
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.CoroutineScope
@@ -82,6 +86,17 @@ class LoginViewModel : ViewModel() {
                 username = username,
                 password = password,
             )
+        }
+    }
+
+    fun crateAccount(customer: Customer) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val jsonObject = Gson().toJson(customer)
+            val jsonObjectString = jsonObject.toString()
+            Log.d("ssd",jsonObjectString)
+            val requestBody = jsonObjectString
+                .toRequestBody("application/json".toMediaTypeOrNull())
+            Repository.createAccount(requestBody)
         }
     }
 }
