@@ -78,7 +78,7 @@ fun RegisterDataScreen(
     stepRegister: Int = 1
 ) {
     val viewModel: LoginViewModel = viewModel()
-    val uiState by viewModel.uiState.collectAsState()
+    val uiLoginState by viewModel.uiLoginState.collectAsState()
     if(stepRegister == 1) {
         StepOneRegisterForm(
             onSignInClicked = onSignInClicked,
@@ -87,7 +87,7 @@ fun RegisterDataScreen(
     }
     if(stepRegister == 2) {
         StepBioRegisterForm(
-            uiState = uiState,
+            uiLoginState = uiLoginState,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 10.dp, end = 10.dp)

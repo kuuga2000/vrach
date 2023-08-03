@@ -63,19 +63,19 @@ fun setAccountData() {
 
 class LoginViewModel : ViewModel() {
 
-    private val _uiState = MutableStateFlow(LoginDataState())
-    val uiState: StateFlow<LoginDataState> = _uiState.asStateFlow()
+    private val _uiLoginState = MutableStateFlow(LoginDataState())
+    val uiLoginState: StateFlow<LoginDataState> = _uiLoginState.asStateFlow()
 
     fun setLoginData(newLoginData: LoginDataState) {
         updateLoginData(newLoginData)
     }
 
     fun resetOrder() {
-        _uiState.value = LoginDataState()
+        _uiLoginState.value = LoginDataState()
     }
 
     private fun updateLoginData(newLoginData: LoginDataState) {
-        _uiState.update { currentState ->
+        _uiLoginState.update { currentState ->
             val username = newLoginData?.username
             val password = newLoginData?.password
             currentState.copy(

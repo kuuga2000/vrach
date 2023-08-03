@@ -173,7 +173,7 @@ fun StepOneRegisterForm(
 @Composable
 fun StepBioRegisterForm(
     modifier: Modifier = Modifier,
-    uiState: LoginDataState
+    uiLoginState: LoginDataState
 ){
     var fullname by remember { mutableStateOf("") }
     var nickname by remember { mutableStateOf("") }
@@ -189,10 +189,10 @@ fun StepBioRegisterForm(
     Column(
     ) {
         Text(text = "Upload Avatar")
-        uiState.username?.let { Text(text = it) }
-        uiState.password?.let { Text(text = it) }
-        //Text(text = uiState?.username ?: "")
-        //Text(text = uiState?.password ?: "")
+        uiLoginState.username?.let { Text(text = it) }
+        uiLoginState.password?.let { Text(text = it) }
+        //Text(text = uiLoginState?.username ?: "")
+        //Text(text = uiLoginState?.password ?: "")
     }
     Row() {
         Column(
