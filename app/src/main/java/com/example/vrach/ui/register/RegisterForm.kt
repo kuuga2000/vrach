@@ -213,9 +213,9 @@ fun StepBioRegisterForm(
     var nickname by remember { mutableStateOf("") }
     var dob by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
-    var gender by remember { mutableStateOf("0") }
+    var gender by remember { mutableStateOf(0) }
 
-    val options = listOf("Male", "Female", "Unknown")
+    val options = mapOf("Male" to 1, "Female" to 2, "Unknown" to 3)
     var expanded by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf("") }
 
@@ -232,7 +232,7 @@ fun StepBioRegisterForm(
         nickname = nickname,
         dateOfBirth = dob,
         email = email,
-        gender = gender.toInt(),
+        gender = gender,
         username = uiLoginState?.username,
         password = uiLoginState?.password
     )
@@ -354,12 +354,12 @@ fun StepBioRegisterForm(
                         expanded = false
                     }
                 ) {
-                    options.forEach { selectionOption ->
+                    options.entries.forEach { (selectionOption, value) ->
                         DropdownMenuItem(
                             text = { Text(text = selectionOption) },
                             onClick = {
                                 selectedOptionText = selectionOption
-                                gender = "2"
+                                gender = value
                                 expanded = false
                             }
                         )
