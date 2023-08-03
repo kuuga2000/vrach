@@ -1,14 +1,19 @@
 package com.example.vrach.ui.register
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.DropdownMenuItem
@@ -33,6 +38,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.vrach.R
@@ -44,6 +50,7 @@ import com.example.vrach.ui.login.SocialRegisterButton
 import com.example.vrach.ui.theme.PurpleWhite
 import com.example.vrach.ui.util.clickableWithoutRipple
 import com.example.vrach.utils.Utils
+import com.example.vrach.utils.Utils.isValidEmail
 
 @Composable
 
@@ -71,13 +78,13 @@ fun StepOneRegisterForm(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround,
+        verticalArrangement = Arrangement.Top,
         modifier = Modifier.fillMaxWidth(0.9f)
     ) {
         OutlinedTextField(
             isError = usernameError.isNotEmpty(),
             value = username,
-            onValueChange = { username = it},
+            onValueChange = { username = it },
             leadingIcon = {
                 Icon(
                     painter = painterResource(id = R.drawable.person_icon),
@@ -114,11 +121,11 @@ fun StepOneRegisterForm(
             modifier = Modifier.fillMaxWidth(),
             color = Color.Red
         )
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         OutlinedTextField(
             isError = passwordError.isNotEmpty(),
             value = password,
-            onValueChange = { password = it},
+            onValueChange = { password = it },
             leadingIcon = {
                 Icon(
                     painter = painterResource(id = R.drawable.password_icon),
@@ -163,7 +170,8 @@ fun StepOneRegisterForm(
             textColor = Color.White,
             onClicked = {
                 if (username.isBlank() || password.isBlank()) {
-                    Toast.makeText(contextCurrent, "Need username and password",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(contextCurrent, "Need username and password", Toast.LENGTH_SHORT)
+                        .show()
                     usernameError = if (username.isBlank()) {
                         "Username must be filled"
                     } else {
@@ -208,7 +216,7 @@ fun StepOneRegisterForm(
 fun StepBioRegisterForm(
     modifier: Modifier = Modifier,
     uiLoginState: LoginDataState,
-){
+) {
     var fullname by remember { mutableStateOf("") }
     var nickname by remember { mutableStateOf("") }
     var dob by remember { mutableStateOf("") }
@@ -236,20 +244,31 @@ fun StepBioRegisterForm(
         username = uiLoginState?.username,
         password = uiLoginState?.password
     )
-
     Column(
+        verticalArrangement = Arrangement.SpaceAround
     ) {
-        Text(text = "Upload Avatar")
-        uiLoginState.username?.let { Text(text = it) }
-        uiLoginState.password?.let { Text(text = it) }
-    }
-    Row() {
+        Row(
+            modifier = modifier
+                .fillMaxHeight(00.20f),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Image(
+                modifier = modifier
+                    .width(120.dp)
+                    .height(120.dp),
+                painter = painterResource(id = R.drawable.avatar_icon),
+                contentDescription = ""
+            )
+        }
+        Spacer(modifier = Modifier.height(10.dp))
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = modifier.fillMaxHeight(),
         ) {
             OutlinedTextField(
                 value = fullname,
-                onValueChange = {fullname = it},
+                onValueChange = { fullname = it },
                 label = {
                     Text("Full Name")
                 },
@@ -266,9 +285,10 @@ fun StepBioRegisterForm(
                 ),
                 modifier = modifier
             )
+            Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
                 value = nickname,
-                onValueChange = {nickname = it},
+                onValueChange = { nickname = it },
                 label = {
                     Text("Nickname")
                 },
@@ -285,9 +305,10 @@ fun StepBioRegisterForm(
                 ),
                 modifier = modifier
             )
+            Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
                 value = dob,
-                onValueChange = {dob = it},
+                onValueChange = { dob = it },
                 label = {
                     Text("Date of Birth")
                 },
@@ -304,9 +325,10 @@ fun StepBioRegisterForm(
                 ),
                 modifier = modifier
             )
+            Spacer(modifier = Modifier.height(10.dp))
             OutlinedTextField(
                 value = email,
-                onValueChange = {email = it},
+                onValueChange = { email = it },
                 label = {
                     Text("Email")
                 },
@@ -323,6 +345,7 @@ fun StepBioRegisterForm(
                 ),
                 modifier = modifier
             )
+            Spacer(modifier = Modifier.height(10.dp))
             ExposedDropdownMenuBox(
                 expanded = expanded,
                 onExpandedChange = {
@@ -383,5 +406,5 @@ fun StepBioRegisterForm(
 @Preview
 @Composable
 fun StepOneRegisterFormPreview() {
- //   StepOneRegisterForm();
+    //   StepOneRegisterForm();
 }

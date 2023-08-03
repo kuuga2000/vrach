@@ -40,7 +40,7 @@ fun RegisterScreen(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround,
+        verticalArrangement = Arrangement.Top,
         modifier = Modifier.fillMaxSize()
     ) {
         if(registerStep == 1) {
@@ -50,16 +50,12 @@ fun RegisterScreen(
                 ) {
                 Image(
                     modifier = Modifier
-                        .height(150.dp)
-                        .width(150.dp),
+                        .height(120.dp)
+                        .width(110.dp),
                     painter = painterResource(id = R.drawable.register_logo2),
                     contentDescription = ""
                 )
-                Text(
-                    text = "Create New Account",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 30.sp
-                )
+                Spacer(modifier = Modifier.height(35.dp))
             }
         }
 
