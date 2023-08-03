@@ -12,7 +12,7 @@ val Pink40 = Color(0xFF7D5260)
 
 val WhiteColor = Color(0xFFFFFFFF)
 
-val PurpleWhite = Color(0xEFEFEF)
+val PurpleWhite = Color(0xFFEFEFEF)
 
 val md_theme_light_primary = Color(0xFF984062)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
