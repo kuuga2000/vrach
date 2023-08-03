@@ -1,5 +1,6 @@
 package com.example.vrach.ui.register
 
+import android.widget.Toast
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -46,17 +48,20 @@ fun StepOneRegisterForm(
     onSignInClicked: () -> Unit = {},
     onSignUpClicked: () -> Unit = {}
 ) {
-    var email by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var emailColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
     var passwordColor by remember { mutableStateOf(Color(0xFFF6F6F6)) }
     val interactionSource = remember { MutableInteractionSource() }
+    val contextCurrent = LocalContext.current
+    var usernameError by remember { mutableStateOf("") }
+    var passwordError by remember { mutableStateOf("") }
 
     val viewModel: LoginViewModel = viewModel()
 
     viewModel.setLoginData(
         LoginDataState(
-            username = email,
+            username = username,
             password = password
         )
     )
@@ -67,16 +72,20 @@ fun StepOneRegisterForm(
         modifier = Modifier.fillMaxWidth(0.9f)
     ) {
         OutlinedTextField(
-            value = email,
-            onValueChange = { email = it},
+            isError = usernameError.isNotEmpty(),
+            value = username,
+            onValueChange = { username = it},
             leadingIcon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.email_icon),
+                    painter = painterResource(id = R.drawable.person_icon),
                     contentDescription = "",
                     modifier = Modifier
-                        .width(20.dp)
-                        .height(20.dp)
+                        .width(35.dp)
+                        .height(35.dp)
                 )
+            },
+            placeholder = {
+                Text("Username")
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color(0xFFF246BFD),
@@ -97,8 +106,14 @@ fun StepOneRegisterForm(
                     emailColor = if (it.isFocused) Color(0xFFFFB8CBF1) else Color(0xFFF6F6F6)
                 }
         )
+        Text(
+            text = usernameError,
+            modifier = Modifier.fillMaxWidth(),
+            color = Color.Red
+        )
         Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(
+            isError = passwordError.isNotEmpty(),
             value = password,
             onValueChange = { password = it},
             leadingIcon = {
@@ -109,6 +124,9 @@ fun StepOneRegisterForm(
                         .width(20.dp)
                         .height(20.dp)
                 )
+            },
+            placeholder = {
+                Text("Password")
             },
             visualTransformation = PasswordVisualTransformation(),
             colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -130,12 +148,33 @@ fun StepOneRegisterForm(
                     passwordColor = if (it.isFocused) Color(0xFFFFB8CBF1) else Color(0xFFF6F6F6)
                 }
         )
+        Text(
+            text = passwordError,
+            modifier = Modifier.fillMaxWidth(),
+            color = Color.Red
+        )
         Spacer(modifier = Modifier.height(30.dp))
         SocialLoginButtons(
             text = "Sign up",
             backgroundColor = Color(0xFFF246BFD),
             textColor = Color.White,
-            onClicked = onSignUpClicked
+            onClicked = {
+                if (username.isBlank() || password.isBlank()) {
+                    Toast.makeText(contextCurrent, "Need username and password",Toast.LENGTH_SHORT).show()
+                    usernameError = if (username.isBlank()) {
+                        "Username must be filled"
+                    } else {
+                        ""
+                    }
+                    passwordError = if (password.isBlank()) {
+                        "Password must be filled"
+                    } else {
+                        ""
+                    }
+                } else {
+                    onSignUpClicked()
+                }
+            }
         )
         Spacer(modifier = Modifier.height(30.dp))
         LineOptions(text = "or continue with", f = 1f, isRegister = true)
