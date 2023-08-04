@@ -78,7 +78,7 @@ fun StepOneRegisterForm(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.SpaceAround,
         modifier = Modifier.fillMaxWidth(0.9f)
     ) {
         OutlinedTextField(
@@ -121,7 +121,7 @@ fun StepOneRegisterForm(
             modifier = Modifier.fillMaxWidth(),
             color = Color.Red
         )
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(5.dp))
         OutlinedTextField(
             isError = passwordError.isNotEmpty(),
             value = password,
@@ -163,7 +163,7 @@ fun StepOneRegisterForm(
             modifier = Modifier.fillMaxWidth(),
             color = Color.Red
         )
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(12.dp))
         SocialLoginButtons(
             text = "Sign up",
             backgroundColor = Color(0xFFF246BFD),
@@ -223,6 +223,10 @@ fun StepBioRegisterForm(
     var email by remember { mutableStateOf("") }
     var gender by remember { mutableStateOf(0) }
 
+    var isEmailError by remember { mutableStateOf(false) }
+    isEmailError = !email.isBlank() && !isValidEmail(email)
+
+
     val options = mapOf("Male" to 1, "Female" to 2, "Unknown" to 3)
     var expanded by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf("") }
@@ -245,13 +249,9 @@ fun StepBioRegisterForm(
         password = uiLoginState?.password
     )
     Column(
-        verticalArrangement = Arrangement.SpaceAround
     ) {
         Row(
-            modifier = modifier
-                .fillMaxHeight(00.20f),
-            verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.Center
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 modifier = modifier
@@ -263,8 +263,7 @@ fun StepBioRegisterForm(
         }
         Spacer(modifier = Modifier.height(10.dp))
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = modifier.fillMaxHeight(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             OutlinedTextField(
                 value = fullname,
@@ -343,6 +342,7 @@ fun StepBioRegisterForm(
                     cursorColor = Color(0xFFF246BFD),
                     containerColor = emailColor
                 ),
+                isError = isEmailError,
                 modifier = modifier
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -356,7 +356,7 @@ fun StepBioRegisterForm(
                     readOnly = true,
                     value = selectedOptionText,
                     onValueChange = { },
-                    label = { Text("Gender") },
+                    placeholder = { Text("Gender") },
                     trailingIcon = {
                         ExposedDropdownMenuDefaults.TrailingIcon(
                             expanded = expanded
@@ -384,7 +384,8 @@ fun StepBioRegisterForm(
                                 selectedOptionText = selectionOption
                                 gender = value
                                 expanded = false
-                            }
+                            },
+                            modifier.fillMaxWidth()
                         )
                     }
                 }

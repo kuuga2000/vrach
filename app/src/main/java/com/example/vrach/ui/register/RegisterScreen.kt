@@ -40,7 +40,7 @@ fun RegisterScreen(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.SpaceAround,
         modifier = Modifier.fillMaxSize()
     ) {
         if(registerStep == 1) {
@@ -50,12 +50,12 @@ fun RegisterScreen(
                 ) {
                 Image(
                     modifier = Modifier
-                        .height(120.dp)
-                        .width(110.dp),
+                        .height(130.dp)
+                        .width(130.dp),
                     painter = painterResource(id = R.drawable.register_logo2),
                     contentDescription = ""
                 )
-                Spacer(modifier = Modifier.height(35.dp))
+                Spacer(modifier = Modifier.height(30.dp))
             }
         }
 

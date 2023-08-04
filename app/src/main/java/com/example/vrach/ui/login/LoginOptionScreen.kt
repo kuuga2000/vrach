@@ -45,7 +45,7 @@ fun LoginOptionScreen(
     val interactionSource = remember { MutableInteractionSource() }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.SpaceAround,
         modifier = Modifier.fillMaxSize()
     ) {
         Column(
@@ -68,7 +68,7 @@ fun LoginOptionScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 10.dp, end = 20.dp, top = 25.dp),
+                .padding(start = 10.dp, end = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             SocialLoginButtons(text = "Continue with Facebook", iconButton = R.drawable.facebook_icon)
