@@ -21,6 +21,8 @@ object Utils {
             val arr = fullname.split(elimenator).toTypedArray()
             if (arr.size > 1) {
                 lastname = arr[1]
+            } else {
+                lastname = arr[0]
             }
         }
         return lastname
