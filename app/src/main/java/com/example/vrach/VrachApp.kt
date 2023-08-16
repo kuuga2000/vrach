@@ -1,28 +1,23 @@
 package com.example.vrach
 
+import android.util.Log
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.vrach.route.LoginRoute
+import com.example.vrach.route.Routes
+import com.example.vrach.ui.home.HomeScreen
 import com.example.vrach.ui.login.LoginOptionScreen
 import com.example.vrach.ui.register.RegisterScreen
 import com.example.vrach.ui.util.VrachAppBar
@@ -32,41 +27,61 @@ fun VrachApp(
     navController: NavHostController = rememberNavController()
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentScreen = LoginRoute.valueOf(
-        backStackEntry?.destination?.route ?: LoginRoute.Login.name
+    val currentScreen = Routes.valueOf(
+        backStackEntry?.destination?.route ?: Routes.Login.name
     )
 
     Scaffold(
         topBar = {
-            VrachAppBar(
-                canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = {
-                    navController.navigateUp()
-                },
-                currentScreen = currentScreen
-            )
+            if (currentScreen.segment == "Login") {
+                VrachAppBar(
+                    canNavigateBack = navController.previousBackStackEntry != null,
+                    navigateUp = { navController.navigateUp() },
+                    currentScreen = currentScreen
+                )
+            }
         },
         containerColor = Color.White,
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = LoginRoute.Login.name,
-            modifier = Modifier.padding(innerPadding)
+            startDestination = Routes.Home.name,
+            modifier = Modifier
+                .padding(
+                    start = 10.dp,
+                    end = 10.dp,
+                    top = 5.dp,
+                    bottom = 5.dp
+                )
+                .fillMaxSize()
         ) {
-            composable(LoginRoute.Login.name) {
+            composable(Routes.Login.name) {
                 LoginOptionScreen(
                     onSignUpClicked = {
-                        navController.navigate(LoginRoute.Signup.name)
+                        navController.navigate(Routes.Signup.name)
                     }
                 )
             }
-            composable(LoginRoute.Signup.name) {
+            composable(Routes.Signup.name) {
                 RegisterScreen(
                     onSignInClicked = {
-                        navController.navigate(LoginRoute.Login.name)
+                        navController.navigate(Routes.Login.name)
                     }
+                )
+            }
+            composable(Routes.Home.name) {
+                Log.d("Pretty Printed JSONxx:", innerPadding.toString())
+                HomeScreen(
+                    modifier = Modifier
                 )
             }
         }
     }
+}
+
+
+
+@Composable
+fun Test() {
+    Text("Sdf");
 }
