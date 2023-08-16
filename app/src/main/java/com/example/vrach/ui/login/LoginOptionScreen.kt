@@ -53,8 +53,8 @@ fun LoginOptionScreen(
         ) {
             Image(
                 modifier = Modifier
-                    .height(250.dp)
-                    .width(250.dp),
+                    .height(210.dp)
+                    .width(210.dp),
                 painter = painterResource(id = R.drawable.login_option),
                 contentDescription = ""
             )

@@ -16,3 +16,9 @@ data class Customer(
     val username: String? = null,
     val password: String? = null
 )
+
+@Serializable
+data class SuccessMessage(
+    @SerializedName("success") val success: Boolean?,
+    @SerializedName("message") val message: String? = null
+)
