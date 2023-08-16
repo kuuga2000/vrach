@@ -2,16 +2,16 @@ package com.example.vrach.ui.register
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.vrach.model.customer.Customer
 import com.example.vrach.model.LoginDataState
+import com.example.vrach.model.customer.Customer
 import com.example.vrach.repository.customer.CustomerRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class LoginViewModel : ViewModel() {
