@@ -33,9 +33,9 @@ import com.example.vrach.ui.util.clickableWithoutRipple
 
 @Composable
 fun LoginOptionScreen(
+    onSiginClicked: () -> Unit = {},
     onSignUpClicked: () -> Unit = {}
 ) {
-    val scrollState = rememberScrollState()
     val interactionSource = remember { MutableInteractionSource() }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -74,7 +74,8 @@ fun LoginOptionScreen(
             SocialLoginButtons(
                 text = "Sign in with password",
                 backgroundColor = Color(0xFFF246BFD),
-                textColor = Color.White
+                textColor = Color.White,
+                onClicked = onSiginClicked
             )
             Spacer(modifier = Modifier.height(25.dp))
             Row(

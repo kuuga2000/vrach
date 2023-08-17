@@ -44,18 +44,16 @@ fun VrachApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Routes.Home.name,
+            startDestination = Routes.Login.name,
             modifier = Modifier
-                .padding(
-                    start = 10.dp,
-                    end = 10.dp,
-                    top = 5.dp,
-                    bottom = 5.dp
-                )
+                .padding(innerPadding)
                 .fillMaxSize()
         ) {
             composable(Routes.Login.name) {
                 LoginOptionScreen(
+                    onSiginClicked = {
+                        navController.navigate(Routes.Home.name)
+                    },
                     onSignUpClicked = {
                         navController.navigate(Routes.Signup.name)
                     }
@@ -71,7 +69,10 @@ fun VrachApp(
             composable(Routes.Home.name) {
                 Log.d("Pretty Printed JSONxx:", innerPadding.toString())
                 HomeScreen(
-                    modifier = Modifier
+                    modifier = Modifier,
+                    onAvatarClicked = {
+                        navController.navigate(Routes.Signup.name)
+                    }
                 )
             }
         }

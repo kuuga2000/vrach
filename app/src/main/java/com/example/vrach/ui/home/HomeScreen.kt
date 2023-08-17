@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,13 +22,20 @@ import com.example.vrach.ui.home.components.HomeBannerSlider
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier
+    modifier: Modifier,
+    onAvatarClicked: () -> Unit = {}
 ) {
     var searchKeyword by remember {
         mutableStateOf("")
     }
 
     Column(
+        modifier= Modifier.padding(
+            start = 10.dp,
+            end = 10.dp,
+            top = 5.dp,
+            bottom = 5.dp
+        )
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -35,7 +43,9 @@ fun HomeScreen(
                 .fillMaxWidth()
                 .height(60.dp)
         ) {
-            Greeting()
+            Greeting(
+                onAvatarClicked =  onAvatarClicked
+            )
             Notification(
                 modifier = Modifier
                     .width(25.dp)
