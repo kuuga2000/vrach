@@ -5,13 +5,15 @@ import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -20,8 +22,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -46,7 +52,7 @@ fun Pager(
     modifier: Modifier = Modifier,
     totalDots: Int,
     selectedIndex: Int,
-    selectedColor: Color = Color.Yellow,
+    selectedColor: Color = Color(0xFFF246BFD).copy(alpha = 0.5f),
     unSelectedColor: Color = Color.Gray,
     dotSize: Dp
 ) {
@@ -91,14 +97,10 @@ fun CarouselSlider(
             itemContent(page)
         }
 
-        // you can remove the surface in case you don't want
-        // the transparant bacground
-        Surface(
+        Box(
             modifier = Modifier
                 .padding(bottom = 8.dp)
                 .align(Alignment.BottomCenter),
-            shape = CircleShape,
-            color = Color.Black.copy(alpha = 0.5f)
         ) {
             Pager(
                 modifier = Modifier.padding(horizontal = 8.dp, vertical = 6.dp),
@@ -107,5 +109,36 @@ fun CarouselSlider(
                 dotSize = 8.dp
             )
         }
+    }
+}
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+fun HomeBannerSlider() {
+    val images = listOf(
+        "https://www.shutterstock.com/image-vector/doctor-online-on-smartphone-app-260nw-2009526605.jpg",
+        "https://www.shutterstock.com/image-photo/smiling-doctor-posing-arms-crossed-260nw-519507367.jpg",
+        "https://www.shutterstock.com/image-vector/doctors-team-medical-staff-doctor-260nw-1488006692.jpg",
+        "https://www.shutterstock.com/image-photo/doctor-leading-medical-team-hospital-260nw-154772753.jpg",
+        "https://www.shutterstock.com/image-vector/doctor-online-concept-icon-through-260nw-1128043784.jpg"
+    )
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+    ) {
+        CarouselSlider(
+            itemsCount = images.size,
+            itemContent = { index ->
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(images[index])
+                        .build(),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.height(200.dp)
+                )
+            }
+        )
     }
 }
