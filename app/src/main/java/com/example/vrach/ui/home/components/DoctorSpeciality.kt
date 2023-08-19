@@ -25,6 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.vrach.R
 
@@ -43,10 +44,10 @@ val specialityDesc = listOf(
     "General",
     "Dentist",
     "Ophthalmic",
-    "Nutrition",
+    "Nutritionist",
     "Neurology",
     "Pediatric",
-    "Radiology",
+    "Radiologist",
     "More",
 )
 
@@ -117,7 +118,12 @@ fun BoxSpeciality(icon: Int?, text: String? = null) {
                 }
             )
             if (text != null) {
-                Text(text = text)
+                Text(
+                    text = text,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    fontWeight = FontWeight.SemiBold
+                )
             }
         }
     }
