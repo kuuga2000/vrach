@@ -27,6 +27,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.vrach.R
 
 val specialityList = mapOf(
@@ -122,7 +123,8 @@ fun BoxSpeciality(icon: Int?, text: String? = null) {
                     text = text,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 12.sp
                 )
             }
         }

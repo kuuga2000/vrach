@@ -118,9 +118,9 @@ fun HomeBannerSlider() {
     val images = listOf(
         "https://www.shutterstock.com/image-photo/clinic-profession-people-health-care-260nw-419213302.jpg",
         "https://www.shutterstock.com/image-photo/smiling-doctor-posing-arms-crossed-260nw-519507367.jpg",
-        "https://www.shutterstock.com/image-vector/doctors-team-medical-staff-doctor-260nw-1488006692.jpg",
+        "https://www.shutterstock.com/image-photo/african-american-male-doctor-visiting-260nw-2265012629.jpg",
         "https://www.shutterstock.com/image-photo/doctor-leading-medical-team-hospital-260nw-154772753.jpg",
-        "https://www.shutterstock.com/image-vector/doctor-online-concept-icon-through-260nw-1128043784.jpg"
+        "https://www.shutterstock.com/image-photo/happy-male-doctor-have-fun-260nw-1906046152.jpg"
     )
 
     Card(
