@@ -19,6 +19,7 @@ import com.example.vrach.ui.comps.CustomSearchField
 import com.example.vrach.ui.comps.Notification
 import com.example.vrach.ui.home.components.Greeting
 import com.example.vrach.ui.home.components.HomeBannerSlider
+import com.example.vrach.ui.home.components.Speciality
 
 @Composable
 fun HomeScreen(
@@ -55,5 +56,7 @@ fun HomeScreen(
         CustomSearchField(search = searchKeyword, onValueChange = { searchKeyword = it } )
         Spacer(modifier = Modifier.height(20.dp))
         HomeBannerSlider()
+        Spacer(modifier = Modifier.height(20.dp))
+        Speciality()
     }
 }
